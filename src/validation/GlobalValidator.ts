@@ -1,7 +1,7 @@
-import { createValidator } from "express-joi-validation";
+import { createValidator } from 'express-joi-validation';
 
 const GlobalValidator = createValidator({
-    passError: true
-  });
-  
+  passError: true,
+});
+
 export default GlobalValidator;

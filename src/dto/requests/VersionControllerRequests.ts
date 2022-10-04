@@ -1,6 +1,6 @@
 interface ITestBodyRequest {
-    TestString: string;
-    TestNumber: number;
+  TestString: string;
+  TestNumber: number;
 }
 
-export {ITestBodyRequest};
+export { ITestBodyRequest };

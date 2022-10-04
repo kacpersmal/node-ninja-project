@@ -1,6 +1,6 @@
 interface IGetDataResponse {
-    CommitHash: string;
-    PackageVersion: string;
+  CommitHash: string;
+  PackageVersion: string;
 }
 
-export {IGetDataResponse};
+export { IGetDataResponse };
