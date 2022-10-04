@@ -8,7 +8,7 @@ interface HttpErrorResponse {
 
 const GlobalErrorHandler = (err: ExpressJoiError,req: Request,res: Response,next: NextFunction) => {
     
-    let response : HttpErrorResponse = {
+    const response : HttpErrorResponse = {
         Message: "Internal Server Error",
         StatusCode: 500
     };

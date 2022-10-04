@@ -6,7 +6,7 @@ interface IGitService {
 
 class GitService implements IGitService {
     public GetCommitHash(){
-         let result = child_process.execSync("git rev-parse HEAD").toString().trim();
+         const result = child_process.execSync("git rev-parse HEAD").toString().trim();
          return result;
     } 
 }

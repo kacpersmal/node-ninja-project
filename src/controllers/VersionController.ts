@@ -6,7 +6,7 @@ import GitService from '../services/GitService';
 class VersionController { 
 
     public async GetData(req: Request, res: Response<IGetDataResponse>, next: NextFunction) {
-        let resp : IGetDataResponse = {
+        const resp : IGetDataResponse = {
             CommitHash: GitService.GetCommitHash(),
             PackageVersion: process.env.npm_package_version ?? "not specified"
         }
@@ -15,7 +15,7 @@ class VersionController {
 
     public async TestValidation(req: Request<{},{},ITestBodyRequest>, res: Response, next: NextFunction) {
         console.log(req.body);
-        let resp = {
+        const resp = {
             Test: "tak"
         }
         res.json(resp);
