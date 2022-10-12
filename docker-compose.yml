@@ -6,7 +6,9 @@ services:
     ports:
       - 3000:3000
     restart: always
-  db:
+    depends_on:
+      - postgre
+  postgre:
     image: postgres
     restart: always
     environment:

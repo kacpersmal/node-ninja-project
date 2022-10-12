@@ -1,0 +1,13 @@
+{
+  "Server": {
+    "port": 3000,
+    "host": "127.0.0.1"
+  },
+  "Database": {
+    "user": "pguser",
+    "host": "postgre",
+    "password": "pgpassword123",
+    "database": "postgres",
+    "port": "5432"
+  }
+}
