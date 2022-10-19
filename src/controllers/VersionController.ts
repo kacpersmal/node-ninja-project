@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { IGetDataResponse } from '../dto/responses/VersionControllerResponses';
 import GitService from '../services/GitService';
 import { version } from '../../package.json';
+import { logger } from '../../app';
 class VersionController {
   public async GetData(req: Request, res: Response<IGetDataResponse>, next: NextFunction) {
     const resp: IGetDataResponse = {

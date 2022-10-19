@@ -3,7 +3,8 @@ import AddApplicationRoutes from './src/routes';
 import GlobalErrorHandler from './src/middleware/GlobalErrorHandler';
 import config from 'config';
 import bunyan, { LoggerOptions } from 'bunyan';
-import DatabaseClient from './src/db/DatabaseClient';
+import * as defaultConfig from './config/default.json';
+import * as prodConfig from './config/production.json';
 
 const bunyanConfig: LoggerOptions = {
   name: 'NinjaApp',

@@ -1,16 +1,15 @@
 import { Pool, PoolConfig } from 'pg';
-import { GetPoolConfig } from '../helpers/ConfigHelper';
 
 class DatabaseClient {
-  private _poolConfig: PoolConfig;
+  private _connectionString: string;
 
-  constructor() {
-    this._poolConfig = GetPoolConfig();
+  constructor(connectionString: string) {
+    this._connectionString = connectionString;
   }
 
   public GetPool() {
-    return new Pool(this._poolConfig);
+    return new Pool({ connectionString: this._connectionString });
   }
 }
 
-export default new DatabaseClient();
+export default DatabaseClient;

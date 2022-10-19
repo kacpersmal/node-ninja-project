@@ -1,13 +1,28 @@
-FROM node:18
+# build stage
+FROM node:18-alpine as build  
 
-ENV NODE_ENV production
+WORKDIR /app  
 
-WORKDIR /usr/src/app
+COPY package*.json ./  
 
-COPY package*.json ./
+RUN npm install  
 
-RUN npm install --quiet
+COPY . .  
 
-COPY . .
+RUN npm run build  
 
-CMD [ "npm", "start" ]
+# production build stage
+FROM node:18-alpine as production  
+
+WORKDIR /app 
+ENV NODE_ENV=production
+ENV NODE_CONFIG_DIR=./dist/config
+
+COPY --from=build /app/package*.json ./  
+
+RUN npm install --omit=dev
+
+COPY --from=build /app/dist ./dist  
+
+CMD ["npm", "run", "start"] 
+
