@@ -1,4 +1,4 @@
-import { Pool, PoolConfig } from 'pg';
+import { Pool } from 'pg';
 
 class DatabaseClient {
   private _connectionString: string;
