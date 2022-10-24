@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  api:
+    image: ninja-api
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - 3000:3000
+    restart: always
+    depends_on:
+      - postgre
+    volumes:
+      - .:/ninja-api
+      - .:/ninja-api/node_modules
+    environment:
+      BASE_CONNECTION_STRING: postgre://pguser:pgpassword1234@localhost:5432/postgres
+  postgre:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpassword123
+      POSTGRES_DB: postgres
+    ports:
+      - '5432:5432'
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - '5050:80'
+    depends_on:
+      - postgre
