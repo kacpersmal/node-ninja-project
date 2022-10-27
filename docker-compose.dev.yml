@@ -8,17 +8,17 @@ services:
       dockerfile: ./Dockerfile.dev
     ports:
       - 3000:3000
-    restart: always
+    restart: unless-stopped
     depends_on:
       - postgre
     volumes:
       - .:/ninja-api
       - .:/ninja-api/node_modules
     environment:
-      BASE_CONNECTION_STRING: postgre://pguser:pgpassword1234@localhost:5432/postgres
+      BASE_CONNECTION_STRING: postgres://pguser:pgpassword123@localhost:5432/ninja-node
   postgre:
     image: postgres
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: pguser
       POSTGRES_PASSWORD: pgpassword123
@@ -28,7 +28,7 @@ services:
   pgadmin:
     container_name: pgadmin4_container
     image: dpage/pgadmin4
-    restart: always
+    restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root

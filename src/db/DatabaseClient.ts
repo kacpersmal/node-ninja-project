@@ -12,4 +12,8 @@ class DatabaseClient {
   }
 }
 
+const BaseClient = new DatabaseClient(process.env.BASE_CONNECTION_STRING ?? 'default');
+
+export { BaseClient };
+
 export default DatabaseClient;

@@ -1,11 +1,9 @@
 import express from 'express';
 import AddApplicationRoutes from './src/routes';
-import GlobalErrorHandler from './src/middleware/GlobalErrorHandler';
 import config from 'config';
 import bunyan, { LoggerOptions } from 'bunyan';
 import * as defaultConfig from './config/default.json';
 import * as prodConfig from './config/production.json';
-
 const bunyanConfig: LoggerOptions = {
   name: 'NinjaApp',
 };
@@ -22,8 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 AddApplicationRoutes(app);
-
-app.use(GlobalErrorHandler);
 
 app.listen(port, () => {
   logger.info(`Server started at port: ${port}`);
