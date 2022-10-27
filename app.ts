@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(ApplicationRoutes);
 app.use(ErrorHandler);
+
 app.listen(port, () => {
   logger.info(`Server started at port: ${port}`);
 });

@@ -1,2 +1,3 @@
 import HttpException from './HttpException';
-export { HttpException };
+import InvalidCredentialsException from './InvalidCredentialsException';
+export { HttpException, InvalidCredentialsException };
