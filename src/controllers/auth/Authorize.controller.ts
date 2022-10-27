@@ -5,6 +5,14 @@ import { Result } from '../utills';
 import { GetUserByEmail } from '../../data/user';
 import { GenerateToken } from '../../features/auth';
 import bcrypt from 'bcrypt';
+import * as Joi from 'joi';
+
+const AuthorizeRequestSchema = Joi.object({
+  email: Joi.string()
+    .required()
+    .email({ tlds: { allow: false } }),
+  password: Joi.string().required(),
+});
 
 const AuthorizeController = async (req: Request, res: Response, next: NextFunction) => {
   const user = await GetUserByEmail(req.body.email);
@@ -19,3 +27,4 @@ const AuthorizeController = async (req: Request, res: Response, next: NextFuncti
 };
 
 export default AuthorizeController;
+export { AuthorizeRequestSchema };

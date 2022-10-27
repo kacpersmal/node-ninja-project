@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import AuthorizeController from './Authorize.controller';
+import AuthorizeController, { AuthorizeRequestSchema } from './Authorize.controller';
 import Authorize from './Authorize.controller';
-
+import { createValidator } from 'express-joi-validation';
 const AuthRouter = Router();
-AuthRouter.post('/', AuthorizeController);
+const validator = createValidator({ passError: true });
+AuthRouter.post('/', validator.body(AuthorizeRequestSchema), AuthorizeController);
 
 export default AuthRouter;
 export { Authorize };
