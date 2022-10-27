@@ -17,11 +17,11 @@ const AuthorizeRequestSchema = Joi.object({
 const AuthorizeController = async (req: Request, res: Response, next: NextFunction) => {
   const user = await GetUserByEmail(req.body.email);
 
-  if (user == undefined) return next(new InvalidCredentialsException());
+  if (user == undefined) return next(InvalidCredentialsException);
 
   const isPasswordValid = await bcrypt.compare(req.body.password, user.password_hash);
 
-  if (!isPasswordValid) return next(new InvalidCredentialsException());
+  if (!isPasswordValid) return next(InvalidCredentialsException);
 
   return Result(res, { token: GenerateToken(user) }, StatusCode.OK);
 };

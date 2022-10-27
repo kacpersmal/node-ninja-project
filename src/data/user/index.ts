@@ -1,3 +1,4 @@
 import GetAllUsers from './GetAllUsers';
 import GetUserByEmail from './GetUserByEmail';
-export { GetAllUsers, GetUserByEmail };
+import InsertUser from './InsertUser';
+export { GetAllUsers, GetUserByEmail, InsertUser };
