@@ -1,9 +1,10 @@
 import { Router } from 'express';
+import { AuthGuard } from '../../middleware';
 import GetAllUsersController from './GetAllUsers.controller';
 
 const UsersRouter = Router();
 
-UsersRouter.get('/', GetAllUsersController);
+UsersRouter.get('/', AuthGuard, GetAllUsersController);
 
 export default UsersRouter;
 
