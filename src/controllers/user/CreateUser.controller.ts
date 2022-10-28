@@ -22,7 +22,6 @@ const CreateUserController = async (req: Request, res: Response, next: NextFunct
   if (await GetUserByEmail(req.body.email)) return next(UserAlreadyExistsException);
 
   const password_hash = await HashPassword(req.body.password);
-  console.log(await GetUserRoleById(req.body.role_id));
   await InsertUser(req.body.email, password_hash, req.body.role_id);
   return Result(res, undefined, StatusCode.OK);
 };

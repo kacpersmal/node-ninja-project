@@ -6,7 +6,6 @@ import config from 'config';
 
 const AuthGuard = (req: Request, res: Response, next: NextFunction) => {
   const token = GetTokenFromRequest(req);
-  console.log(token);
   if (!token) return res.sendStatus(StatusCode.UNAUTHORIZED);
 
   jwt.verify(token, config.get('JWT.key'), (err: any, payload: any) => {
