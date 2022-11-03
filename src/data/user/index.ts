@@ -4,4 +4,5 @@ import InsertUser from './InsertUser';
 import SoftDeleteUser from './SoftDeleteUser';
 import GetUserById from './GetUserById';
 import SaveUser from './SaveUser';
-export { GetAllUsers, GetUserByEmail, InsertUser, SoftDeleteUser, GetUserById, SaveUser };
+import HardDeleteUser from './HardDeleteUser';
+export { GetAllUsers, GetUserByEmail, InsertUser, SoftDeleteUser, GetUserById, SaveUser, HardDeleteUser };

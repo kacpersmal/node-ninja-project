@@ -5,10 +5,11 @@ const InsertUser = async (email: string, password_hash: string, role_id: string)
 
   const res = await pool.query(
     `INSERT INTO auth.users(email,password_hash,role_id)
-  VALUES ($1, $2,$3)`,
+  VALUES ($1, $2,$3)
+  RETURNING *`,
     [email, password_hash, role_id],
   );
-  return res;
+  return res.rows[0];
 };
 
 export default InsertUser;

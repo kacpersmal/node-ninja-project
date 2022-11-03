@@ -17,8 +17,6 @@ export const logger = bunyan.createLogger(bunyanConfig);
 
 const port = config.get('Server.port');
 
-logger.info('Server starting...');
-
 const app = express();
 
 app.use(express.json());
@@ -27,6 +25,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(ApplicationRoutes);
 app.use(ErrorHandler);
 
-app.listen(port, () => {
-  logger.info(`Server started at port: ${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    logger.info(`Server started at port: ${port}`);
+  });
+}
+
+export default app;
