@@ -13,5 +13,15 @@ const GetAdminToken = async () => {
   return `Bearer ${response.body.token}`;
 };
 
-export { GetAdminToken, USER_ROLE_ID, ADMIN_ROLE_ID, ADMIN_USER_ID };
+const GetBasicToken = async () => {
+  const response = await SUPERTEST.post('/auth').send({ email: 'user@test.com', password: 'test1234' });
+  return `Bearer ${response.body.token}`;
+};
+
+const GetCustomToken = async (email: string, password: string) => {
+  const response = await SUPERTEST.post('/auth').send({ email: email, password: password });
+  return `Bearer ${response.body.token}`;
+};
+
+export { GetAdminToken, USER_ROLE_ID, ADMIN_ROLE_ID, ADMIN_USER_ID, GetBasicToken, GetCustomToken };
 export default SUPERTEST;

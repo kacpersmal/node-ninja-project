@@ -10,6 +10,8 @@ const AdminGuard = (req: Request, res: Response, next: NextFunction) => {
   jwt.verify(token, config.get('JWT.key'), (err: any, payload: any) => {
     if (err) return res.sendStatus(StatusCode.UNAUTHORIZED);
     if (payload.user_role != 'admin') return res.sendStatus(StatusCode.FORBIDDEN);
+    res.locals.user_id = payload.id;
+    res.locals.user_role = payload.user_role;
     next();
   });
 };

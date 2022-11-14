@@ -13,7 +13,7 @@ const validator = createValidator({ passError: true });
 UsersRouter.get('/:userId', AuthGuard, GetUserByIdController);
 UsersRouter.get('/', AuthGuard, GetAllUsersController);
 UsersRouter.post('/', AdminGuard, validator.body(CreateUserRequestSchema), CreateUserController);
-UsersRouter.delete('/:userId', AdminGuard, validator.params(DeleteUserRequestSchema), DeleteUserController);
+UsersRouter.delete('/:userId', AuthGuard, validator.params(DeleteUserRequestSchema), DeleteUserController);
 UsersRouter.patch('/:userId', AdminGuard, validator.params(EditUserParamsSchema), EditUserController);
 
 export default UsersRouter;
