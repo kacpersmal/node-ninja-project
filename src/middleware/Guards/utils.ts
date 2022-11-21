@@ -1,5 +1,8 @@
 import { Request } from 'express';
 
+const ADMIN_ROLE = 'admin';
+const USER_ROLE = 'user';
+
 function GetTokenFromRequest(req: Request) {
   const authHeader = req.headers['authorization']?.trim();
   const headerData = authHeader && authHeader.split(' ');
@@ -7,4 +10,4 @@ function GetTokenFromRequest(req: Request) {
   return undefined;
 }
 
-export { GetTokenFromRequest };
+export { GetTokenFromRequest, ADMIN_ROLE, USER_ROLE };

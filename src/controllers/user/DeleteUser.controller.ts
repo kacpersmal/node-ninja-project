@@ -15,17 +15,11 @@ const UnpriviligedAccessException = () => new HttpException(StatusCode.FORBIDDEN
 const DeleteUserController = async (req: Request, res: Response, next: NextFunction) => {
   const id = req.params['userId'];
 
-  // console.log(res.locals.id != id || res.locals.user_role != 'admin');
-  // console.log(res.locals);
-  // console.log(id);
-
   if (res.locals.user_role != 'admin') {
     if (res.locals.user_id != id) {
       next(UnpriviligedAccessException());
     }
   }
-
-  //if (res.locals.user_id != id || res.locals.user_role != 'admin') next(UnpriviligedAccessException());
 
   if ((await GetUserById(id)) == undefined) next(UserNotFoundException(id));
 

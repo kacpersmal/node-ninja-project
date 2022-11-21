@@ -6,8 +6,13 @@ import { GetUserById, SaveUser } from '../../data/user';
 import { HttpException } from '../../exceptions';
 import jsonpatch from 'fast-json-patch';
 import { HashPassword } from '../../features/auth';
+
 const EditUserParamsSchema = Joi.object({
   userId: Joi.string().required(),
+});
+const EditUserBodySchema = Joi.object({
+  email: Joi.string().email({ tlds: { allow: false } }),
+  password: Joi.string(),
 });
 
 const UserNotFoundException = new HttpException(StatusCode.NOT_FOUND, 'User with given id does not exists');
@@ -22,5 +27,5 @@ const EditUserController = async (req: Request, res: Response, next: NextFunctio
   return Result(res, {}, StatusCode.OK);
 };
 
-export { EditUserParamsSchema };
+export { EditUserParamsSchema, EditUserBodySchema };
 export default EditUserController;
