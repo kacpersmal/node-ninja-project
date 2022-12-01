@@ -35,6 +35,17 @@ ALTER TABLE IF EXISTS auth.users
     OWNER to pguser;
 
 
+/* STARLINK DATA */
+
+CREATE SCHEMA external_data;
+
+CREATE TABLE external_data.starlink (
+        "id" uuid UNIQUE DEFAULT gen_random_uuid(),
+        "data" JSONB,
+        "creation_date" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        "delete_date" TIMESTAMPTZ DEFAULT NULL,
+        "edit_date" TIMESTAMPTZ DEFAULT NULL
+)
 
 /* Auth */ 
 
